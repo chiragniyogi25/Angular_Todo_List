@@ -1,0 +1,23 @@
+<div class='container'>
+    <h1 class='text-center mb-3'>Todo List by Chirag</h1>
+    <!-- to add element  -->
+    <app-add-todo (todoadd)="addTodo($event)"></app-add-todo>
+    <h4>Your Todos</h4>
+    
+    <div *ngIf="this.todos.length===0; else elseBlock">No Todos to display</div>
+    <ng-template #elseBlock>    
+        <!-- ngFor is a directive -->
+        <!-- todoDelete is the event Emitter from to-item-component.ts -->
+        <!-- event binding uses $event to bind with EventEmitter todoDelete -->
+        <!-- data binding uses [] -->
+        <!-- eventBinding uses () -->
+        <ul *ngFor="let todo of todos;index as i">
+            <app-todo-item 
+            [i]="i" 
+            [todo1]="todo" 
+            (todoDelete)="deleteTodo($event)" 
+            (todoCheckBox)="ToggleTodo($event)"></app-todo-item>    
+        </ul>
+    </ng-template>
+</div>
+    
